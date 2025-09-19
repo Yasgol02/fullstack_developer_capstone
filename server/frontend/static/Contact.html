@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Dealerships</title>
+
+  <!-- CSS: Bootstrap first, then your overrides -->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+
+  <style>
+    /* Page-specific styles */
+    .bg-teal { background-color: #12c2c2; }
+    .contact-hero {
+      background: linear-gradient(90deg, #12c2c2, #06b3b3 60%, #00a0a0);
+      color: #fff; padding: 28px 0 36px;
+    }
+    .contact-hero .hero-card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 20px 28px;
+      max-width: 680px;
+    }
+    .map-placeholder {
+      width: 100%; height: 260px;
+      background: #e9f4f4; border: 1px solid #dcecec; border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+      <div class="container-fluid">
+        <h2 style="padding-right: 5%;">Dealerships</h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Hero band -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="hero-card shadow-sm">
+        <h1 class="mb-2">Contact Us</h1>
+        <p class="mb-0">We’re here to help with pricing, test drives, financing, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main class="container my-4 my-md-5">
+    <div class="row g-4">
+      <!-- Left: dealership details -->
+      <div class="col-12 col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Best Cars Dealership</h5>
+
+            <ul class="list-unstyled small mb-3">
+              <li class="mb-2">
+                1234 Turbo Drive, Suite 200, Toronto, ON M5V 2T6
+              </li>
+              <li class="mb-2">
+                <a href="tel:+14165550198">(416) 555-0198</a>
+              </li>
+              <li class="mb-2">
+                <a href="mailto:hello@bestcars.example">hello@bestcars.example</a>
+              </li>
+              <li class="mb-2">
+                Mon–Sat: 9:00–18:00 • Sun: 11:00–16:00
+              </li>
+              <li class="mb-2">
+                Service Center: <a href="tel:+14165550113">(416) 555-0113</a>
+              </li>
+              <li class="mb-2">
+                Live Chat: Mon–Fri 9:00–17:00
+              </li>
+            </ul>
+
+            <hr>
+
+            <div class="small">
+              <p class="mb-2">
+                <strong>Sales Inquiries</strong><br>
+                <a href="mailto:sales@bestcars.example">sales@bestcars.example</a>
+              </p>
+              <p class="mb-0">
+                <strong>Financing</strong><br>
+                <a href="mailto:finance@bestcars.example">finance@bestcars.example</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="col-12 col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Send us a message</h5>
+            <form method="post" action="/contact/submit/">
+              <!-- {% csrf_token %} if using Django -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" name="name" type="text" class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="name@example.com" required>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" rows="5" class="form-control" placeholder="How can we help?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Find us -->
+    <div class="row g-4 mt-4">
+      <div class="col-12">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Find us</h5>
+            <!-- Replace with Google Maps iframe if desired -->
+            <div class="map-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bootstrap JS (for navbar toggler) -->
+  <script src="/static/bootstrap.bundle.min.js"></script>
+</body>
+</html>
