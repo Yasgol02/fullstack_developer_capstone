@@ -1,0 +1,53 @@
+name: Lint Code
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  lint_python:
+    name: Lint Python Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'        # cache pip downloads
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      - name: Run flake8
+        run: |
+          flake8 .
+          echo "Linted all Python files successfully"
+
+  lint_js:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'        # cache node_modules via package-lock.json if present
+
+      - name: Install JSHint
+        run: npm install --global jshint
+
+      - name: Run JSHint
+        run: |
+          # Lint JS under server/database; change to "." to lint entire repo
+          jshint "server/database/**/*.js" || exit 1
+          echo "Linted all JS files successfully"
