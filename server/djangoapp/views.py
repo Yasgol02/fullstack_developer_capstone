@@ -71,9 +71,13 @@ def registration(request):
             email=email,
         )
         login(request, user)
-        return JsonResponse({"userName": username, "status": "Authenticated"})
+        return JsonResponse(
+            {"userName": username, "status": "Authenticated"}
+        )
 
-    return JsonResponse({"userName": username, "error": "Already Registered"})
+    return JsonResponse(
+        {"userName": username, "error": "Already Registered"}
+    )
 
 
 def get_cars(request):
@@ -83,7 +87,10 @@ def get_cars(request):
         initiate()
 
     car_models = CarModel.objects.select_related("car_make")
-    cars = [{"CarModel": cm.name, "CarMake": cm.car_make.name} for cm in car_models]
+    cars = [
+        {"CarModel": cm.name, "CarMake": cm.car_make.name}
+        for cm in car_models
+    ]
     return JsonResponse({"CarModels": cars})
 
 
@@ -102,8 +109,12 @@ def get_dealer_reviews(request, dealer_id):
         endpoint = f"/fetchReviews/dealer/{dealer_id}"
         reviews = get_request(endpoint)
         for review_detail in reviews:
-            resp = analyze_review_sentiments(review_detail["review"])
-            review_detail["sentiment"] = resp.get("sentiment") if resp else None
+            resp = analyze_review_sentiments(
+                review_detail["review"]
+            )
+            review_detail["sentiment"] = (
+                resp.get("sentiment") if resp else None
+            )
         return JsonResponse({"status": 200, "reviews": reviews})
 
     return JsonResponse({"status": 400, "message": "Bad Request"})
@@ -115,7 +126,9 @@ def get_dealer_details(request, dealer_id):
     if dealer_id:
         endpoint = f"/fetchDealer/{dealer_id}"
         dealership = get_request(endpoint)
-        return JsonResponse({"status": 200, "dealer": dealership})
+        return JsonResponse(
+            {"status": 200, "dealer": dealership}
+        )
 
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
@@ -128,4 +141,6 @@ def add_review(request):
         post_review(data)
         return JsonResponse({"status": 200})
     except Exception:
-        return JsonResponse({"status": 400, "message": "Error in posting review"})
+        return JsonResponse(
+            {"status": 400, "message": "Error in posting review"}
+        )
